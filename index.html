@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Trig Quiz – Boost Tutor</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Sarabun',sans-serif;background:#f4fafa;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+#app{width:100%;max-width:480px;padding:1rem 1rem 0}
+footer{width:100%;max-width:480px;text-align:center;padding:2rem 0 2.5rem}
+.mascot{font-size:44px;text-align:center;margin-bottom:0.3rem}
+.boost-bubble{background:#02989E;color:#fff;border-radius:18px 18px 18px 4px;padding:9px 14px;font-size:13px;display:inline-block;max-width:88%;line-height:1.5}
+.bubble-wrap{display:flex;justify-content:flex-start;margin-bottom:1rem}
+.progress-wrap{margin-bottom:0.8rem}
+.progress-bar-bg{background:#d0eeee;border-radius:99px;height:8px;overflow:hidden;margin-bottom:4px}
+.progress-bar-fill{background:#02989E;height:8px;border-radius:99px;transition:width .4s}
+.q-label{font-size:11px;color:#888}
+.question-box{background:#fff;border:1px solid #c8e8e9;border-radius:14px;padding:1rem;margin-bottom:1rem;font-size:20px;font-weight:600;color:#111;text-align:center;min-height:60px;display:flex;align-items:center;justify-content:center}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.8rem}
+.choice-btn{background:#fff;border:1.5px solid #b0d8da;border-radius:10px;padding:10px 6px;font-size:15px;font-family:'Sarabun',sans-serif;cursor:pointer;color:#111;transition:background .15s,border-color .15s;text-align:center;display:flex;align-items:center;justify-content:center;min-height:56px;touch-action:manipulation}
+.choice-btn:active{transform:scale(0.97)}
+.choice-btn:hover:not(:disabled){background:#e6f7f7;border-color:#02989E}
+.choice-btn.correct{background:#d4f3ed;border-color:#02989E;color:#085041;font-weight:600}
+.choice-btn.wrong{background:#fde8e8;border-color:#e24b4a;color:#501313}
+.choice-btn:disabled{cursor:default}
+.frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1;font-size:14px}
+.frac .num{border-bottom:1.5px solid currentColor;padding:0 3px 1px;line-height:1.2}
+.frac .den{padding:1px 3px 0;line-height:1.2}
+.neg-frac{display:inline-flex;align-items:center;gap:2px}
+.feedback-box{border-radius:10px;padding:9px 12px;font-size:13px;margin-bottom:0.8rem;text-align:center;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;min-height:38px}
+.feedback-correct{background:#d4f3ed;color:#085041}
+.feedback-wrong{background:#fde8e8;color:#501313}
+.next-btn{width:100%;background:#02989E;color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;transition:opacity .2s;touch-action:manipulation}
+.next-btn:active{opacity:.85}
+.result-card{background:#fff;border:1px solid #c8e8e9;border-radius:16px;padding:1.5rem;text-align:center}
+.result-title{font-size:20px;font-weight:600;color:#02989E;margin:0.4rem 0}
+.result-desc{font-size:13px;color:#555;margin-bottom:1rem;line-height:1.7}
+.stat-row{display:flex;justify-content:center;gap:2.5rem;margin:0.8rem 0}
+.stat-num{font-size:26px;font-weight:600;color:#02989E}
+.stat-lbl{font-size:11px;color:#888}
+.retry-btn{background:#02989E;color:#fff;border:none;border-radius:10px;padding:12px 32px;font-size:15px;font-family:'Sarabun',sans-serif;cursor:pointer;font-weight:600;touch-action:manipulation}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="main"></div>
+</div>
+<footer>
+  <img src="https://raw.githubusercontent.com/panuphongpotae/boost-tutor-assets/main/logo%20boost%20tutor-01.png" alt="Boost Tutor" style="width:320px;height:auto">
+</footer>
+<script>
+const DEG=Math.PI/180;
+function fracHTML(neg,num,den){
+  const sign=neg?'<span style="font-size:17px;margin-right:1px">−</span>':'';
+  if(!den)return sign+'<span>'+num+'</span>';
+  return`<span class="neg-frac">${sign}<span class="frac"><span class="num">${num}</span><span class="den">${den}</span></span></span>`;
+}
+const LABELS={
+  '0':{neg:false,num:'0',den:null},
+  '1/2':{neg:false,num:'1',den:'2'},
+  '√2/2':{neg:false,num:'√2',den:'2'},
+  '√3/2':{neg:false,num:'√3',den:'2'},
+  '1':{neg:false,num:'1',den:null},
+  '√3':{neg:false,num:'√3',den:null},
+  '2':{neg:false,num:'2',den:null},
+  '√3/3':{neg:false,num:'√3',den:'3'},
+  '2√3/3':{neg:false,num:'2√3',den:'3'},
+  '2√2/3':{neg:false,num:'2√2',den:'3'},
+  '-1/2':{neg:true,num:'1',den:'2'},
+  '-√2/2':{neg:true,num:'√2',den:'2'},
+  '-√3/2':{neg:true,num:'√3',den:'2'},
+  '-1':{neg:true,num:'1',den:null},
+  '-√3':{neg:true,num:'√3',den:null},
+  '-2':{neg:true,num:'2',den:null},
+  '-√3/3':{neg:true,num:'√3',den:'3'},
+  '-2√3/3':{neg:true,num:'2√3',den:'3'},
+  '-2√2/3':{neg:true,num:'2√2',den:'3'},
+};
+function renderLabel(k){
+  if(!LABELS[k])return k;
+  const{neg,num,den}=LABELS[k];
+  return fracHTML(neg,num,den);
+}
+function r(x){
+  if(Math.abs(x)<1e-9)return'0';
+  if(!isFinite(x))return'ไม่นิยาม';
+  const pairs=[
+    [0.5,'1/2'],[Math.sqrt(2)/2,'√2/2'],[Math.sqrt(3)/2,'√3/2'],
+    [1,'1'],[Math.sqrt(3),'√3'],[2,'2'],[1/Math.sqrt(3),'√3/3'],
+    [2/Math.sqrt(3),'2√3/3'],[2*Math.sqrt(2)/3,'2√2/3'],
+    [-0.5,'-1/2'],[-Math.sqrt(2)/2,'-√2/2'],[-Math.sqrt(3)/2,'-√3/2'],
+    [-1,'-1'],[-Math.sqrt(3),'-√3'],[-2,'-2'],[-1/Math.sqrt(3),'-√3/3'],
+    [-2/Math.sqrt(3),'-2√3/3'],[-2*Math.sqrt(2)/3,'-2√2/3']
+  ];
+  for(const[v,l]of pairs)if(Math.abs(x-v)<0.0001)return l;
+  return x.toFixed(3);
+}
+const ANGLES=[0,30,45,60,90,120,150,180,210,225,240,270,300,315,330,360,-30,-45,-60,-90,-120,-150,-180,-210,-225,-240,-270,-300,-315,-330,-360];
+const FUNCS=['sin','cos','tan','cosec','sec','cot'];
+function val(fn,deg){
+  const rad=deg*DEG,s=Math.sin(rad),c=Math.cos(rad);
+  if(fn==='sin')return s;
+  if(fn==='cos')return c;
+  if(fn==='tan')return Math.abs(c)<1e-9?Infinity:s/c;
+  if(fn==='cosec')return Math.abs(s)<1e-9?Infinity:1/s;
+  if(fn==='sec')return Math.abs(c)<1e-9?Infinity:1/c;
+  if(fn==='cot')return Math.abs(s)<1e-9?Infinity:c/s;
+}
+const POOL=Object.keys(LABELS);
+function genQ(){
+  let fn,deg,ans,tries=0;
+  do{fn=FUNCS[Math.floor(Math.random()*6)];deg=ANGLES[Math.floor(Math.random()*ANGLES.length)];ans=val(fn,deg);tries++;}
+  while(!isFinite(ans)&&tries<30);
+  if(!isFinite(ans)){fn='sin';deg=30;ans=0.5;}
+  const correct=r(ans);
+  const set=new Set([correct]);
+  let t=0;
+  while(set.size<4&&t++<80)set.add(POOL[Math.floor(Math.random()*POOL.length)]);
+  const arr=[...set].sort(()=>Math.random()-.5);
+  return{fn,deg,correct,choices:arr.slice(0,4)};
+}
+const TOTAL=12;
+const OK=['เยี่ยมมาก! ','ถูกต้อง! ','เก่งมาก! ','Perfect! ','โอเค! '];
+const NO=['โอ๊ะ! ไม่เป็นไร ','เกือบแล้ว! ','อย่าท้อนะ! ','ฝึกอีกนิด! '];
+const BUBBLES=['สวัสดี! พี่เต้มาทดสอบกันเลย! 🎯','ไหวมั้ย? มาลุยกัน! 💪','พี่เต้เชื่อในตัวเธอ! 🔥','โฟกัสนะ สู้ๆ! ⚡'];
+const PERSONAS=[
+  {min:11,name:'Trigo Legend',emoji:'🏆',desc:'พี่เต้กราบเลย! แม่นยำสุดๆ ฝีมือระดับตำนาน!'},
+  {min:9,name:'The Unit Circle Hero',emoji:'⭐',desc:'พี่เต้ประทับใจมาก! ท่อง unit circle ได้ในหัวเลย!'},
+  {min:7,name:'The Rising Mathematician',emoji:'📐',desc:'กำลังมาแรง! พี่เต้เห็นแวว ฝึกอีกนิดก็ Legend!'},
+  {min:5,name:'The Brave Beginner',emoji:'💪',desc:'กล้าลองแล้ว! พี่เต้เชื่อว่าฝึกอีกจะเป็น Trigo Legend ได้แน่!'},
+  {min:0,name:'Keep Going!',emoji:'💀',desc:'โอ๊ะ! พี่เต้ไม่ทิ้งกัน ลองใหม่แล้วจะเก่งขึ้นแน่นอน!'},
+];
+let questions=[],current=0,score=0,answered=false;
+function buildQuiz(){questions=Array.from({length:TOTAL},()=>genQ());current=0;score=0;}
+function render(){
+  const app=document.getElementById('main');
+  if(current>=TOTAL){renderResult(app);return;}
+  const q=questions[current];
+  answered=false;
+  const bubble=BUBBLES[Math.floor(Math.random()*BUBBLES.length)];
+  app.innerHTML=`
+  <div class="mascot">💀</div>
+  <div class="bubble-wrap"><div class="boost-bubble">พี่เต้: ${bubble}</div></div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${Math.round(current/TOTAL*100)}%"></div></div>
+    <div class="q-label">ข้อ ${current+1} / ${TOTAL}</div>
+  </div>
+  <div class="question-box">${q.fn}(${q.deg}°) = ?</div>
+  <div class="choices" id="choices">
+    ${q.choices.map(c=>`<button class="choice-btn" data-val="${c}" onclick="choose(this,'${c}')">${renderLabel(c)}</button>`).join('')}
+  </div>
+  <div class="feedback-box" id="fb" style="display:none"></div>
+  <button class="next-btn" id="nxt" style="display:none" onclick="nextQ()">ต่อไป →</button>`;
+}
+function choose(btn,v){
+  if(answered)return;
+  answered=true;
+  const q=questions[current];
+  const ok=v===q.correct;
+  if(ok)score++;
+  document.querySelectorAll('.choice-btn').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.val===q.correct)b.classList.add('correct');
+    else if(b===btn&&!ok)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('fb');
+  fb.style.display='flex';
+  const ans=renderLabel(q.correct);
+  if(ok){fb.className='feedback-box feedback-correct';fb.innerHTML=OK[Math.floor(Math.random()*OK.length)]+`${q.fn}(${q.deg}°) = `+ans+' ✓';}
+  else{fb.className='feedback-box feedback-wrong';fb.innerHTML=NO[Math.floor(Math.random()*NO.length)]+'คำตอบที่ถูกคือ '+ans;}
+  document.getElementById('nxt').style.display='block';
+}
+function nextQ(){current++;render();}
+function renderResult(app){
+  const p=PERSONAS.find(x=>score>=x.min);
+  app.innerHTML=`
+  <div class="mascot">${p.emoji}</div>
+  <div style="text-align:center;margin-bottom:1rem"><div class="boost-bubble" style="display:inline-block">พี่เต้: ${score>=9?'ภูมิใจในตัวเธอมาก! 🎉':'เชียร์อยู่เสมอนะ! 💙'}</div></div>
+  <div class="result-card">
+    <div style="font-size:12px;color:#888">เธอคือ...</div>
+    <div class="result-title">${p.name}</div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">${score}/${TOTAL}</div><div class="stat-lbl">คะแนน</div></div>
+      <div class="stat-item"><div class="stat-num">${Math.round(score/TOTAL*100)}%</div><div class="stat-lbl">ความแม่นยำ</div></div>
+    </div>
+    <div class="result-desc">${p.desc}</div>
+    <button class="retry-btn" onclick="startOver()">เล่นอีกครั้ง</button>
+  </div>`;
+}
+function startOver(){buildQuiz();render();}
+buildQuiz();render();
+</script>
+</body>
+</html>
