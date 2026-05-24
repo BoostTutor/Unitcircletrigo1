@@ -9,7 +9,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Sarabun',sans-serif;background:#f4fafa;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 #app{width:100%;max-width:480px;padding:1rem 1rem 0}
-footer{width:100%;max-width:480px;text-align:center;padding:2rem 0 2.5rem}
+footer{width:100%;max-width:480px;text-align:center;padding:1.5rem 0 2rem}
 .mascot{font-size:44px;text-align:center;margin-bottom:0.3rem}
 .boost-bubble{background:#02989E;color:#fff;border-radius:18px 18px 18px 4px;padding:9px 14px;font-size:13px;display:inline-block;max-width:88%;line-height:1.5}
 .bubble-wrap{display:flex;justify-content:flex-start;margin-bottom:1rem}
@@ -17,7 +17,7 @@ footer{width:100%;max-width:480px;text-align:center;padding:2rem 0 2.5rem}
 .progress-bar-bg{background:#d0eeee;border-radius:99px;height:8px;overflow:hidden;margin-bottom:4px}
 .progress-bar-fill{background:#02989E;height:8px;border-radius:99px;transition:width .4s}
 .q-label{font-size:11px;color:#888}
-.question-box{background:#fff;border:1px solid #c8e8e9;border-radius:14px;padding:1rem;margin-bottom:1rem;font-size:20px;font-weight:600;color:#111;text-align:center;min-height:60px;display:flex;align-items:center;justify-content:center}
+.question-box{background:#fff;border:1px solid #c8e8e9;border-radius:14px;padding:1rem;margin-bottom:1rem;font-size:18px;font-weight:600;color:#111;text-align:center;min-height:64px;display:flex;align-items:center;justify-content:center}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.8rem}
 .choice-btn{background:#fff;border:1.5px solid #b0d8da;border-radius:10px;padding:10px 6px;font-size:15px;font-family:'Sarabun',sans-serif;cursor:pointer;color:#111;transition:background .15s,border-color .15s;text-align:center;display:flex;align-items:center;justify-content:center;min-height:56px;touch-action:manipulation}
 .choice-btn:active{transform:scale(0.97)}
@@ -25,79 +25,147 @@ footer{width:100%;max-width:480px;text-align:center;padding:2rem 0 2.5rem}
 .choice-btn.correct{background:#d4f3ed;border-color:#02989E;color:#085041;font-weight:600}
 .choice-btn.wrong{background:#fde8e8;border-color:#e24b4a;color:#501313}
 .choice-btn:disabled{cursor:default}
-.frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1;font-size:14px}
-.frac .num{border-bottom:1.5px solid currentColor;padding:0 3px 1px;line-height:1.2}
-.frac .den{padding:1px 3px 0;line-height:1.2}
-.neg-frac{display:inline-flex;align-items:center;gap:2px}
+.frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1}
+.frac .num{border-bottom:1.5px solid currentColor;padding:0 3px 1px;line-height:1.2;font-size:13px}
+.frac .den{padding:1px 3px 0;line-height:1.2;font-size:13px}
+.neg-frac{display:inline-flex;align-items:center;gap:1px}
+.ang-frac{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1;vertical-align:middle}
+.ang-frac .num{border-bottom:1.5px solid currentColor;padding:0 2px 1px;line-height:1.2;font-size:15px}
+.ang-frac .den{padding:1px 2px 0;line-height:1.2;font-size:15px}
 .feedback-box{border-radius:10px;padding:9px 12px;font-size:13px;margin-bottom:0.8rem;text-align:center;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;min-height:38px}
 .feedback-correct{background:#d4f3ed;color:#085041}
 .feedback-wrong{background:#fde8e8;color:#501313}
-.next-btn{width:100%;background:#02989E;color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;transition:opacity .2s;touch-action:manipulation}
-.next-btn:active{opacity:.85}
-.result-card{background:#fff;border:1px solid #c8e8e9;border-radius:16px;padding:1.5rem;text-align:center}
+.next-btn{width:100%;background:#02989E;color:#fff;border:none;border-radius:10px;padding:14px;font-size:16px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;margin-bottom:0.5rem;touch-action:manipulation}
+.result-card{background:#fff;border:1px solid #c8e8e9;border-radius:16px;padding:1.2rem;text-align:center;margin-bottom:1rem}
 .result-title{font-size:20px;font-weight:600;color:#02989E;margin:0.4rem 0}
-.result-desc{font-size:13px;color:#555;margin-bottom:1rem;line-height:1.7}
-.stat-row{display:flex;justify-content:center;gap:2.5rem;margin:0.8rem 0}
-.stat-num{font-size:26px;font-weight:600;color:#02989E}
+.result-desc{font-size:13px;color:#555;margin-bottom:0.8rem;line-height:1.7}
+.stat-row{display:flex;justify-content:center;gap:2rem;margin:0.8rem 0}
+.stat-num{font-size:24px;font-weight:600;color:#02989E}
 .stat-lbl{font-size:11px;color:#888}
-.retry-btn{background:#02989E;color:#fff;border:none;border-radius:10px;padding:12px 32px;font-size:15px;font-family:'Sarabun',sans-serif;cursor:pointer;font-weight:600;touch-action:manipulation}
+.name-card{background:#fff;border:1px solid #c8e8e9;border-radius:16px;padding:1.2rem;margin-bottom:1rem}
+.name-card p{font-size:13px;color:#555;margin-bottom:0.6rem;text-align:center}
+.name-input{width:100%;border:1.5px solid #b0d8da;border-radius:10px;padding:10px 12px;font-size:15px;font-family:'Sarabun',sans-serif;outline:none;color:#111}
+.name-input:focus{border-color:#02989E}
+.submit-btn{width:100%;background:#02989E;color:#fff;border:none;border-radius:10px;padding:12px;font-size:15px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;margin-top:0.6rem}
+.lb-card{background:#fff;border:1px solid #c8e8e9;border-radius:16px;padding:1.2rem;margin-bottom:1rem}
+.lb-title{font-size:15px;font-weight:600;color:#02989E;margin-bottom:0.8rem;text-align:center}
+.lb-row{display:grid;grid-template-columns:28px 1fr 44px 56px;align-items:center;gap:6px;padding:7px 4px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.lb-row:last-child{border:none}
+.lb-header{font-size:11px;color:#888;font-weight:600;border-bottom:1.5px solid #d0eeee !important}
+.lb-rank{font-weight:600;color:#02989E;text-align:center}
+.lb-name{color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-score{text-align:center;font-weight:600}
+.lb-time{text-align:right;color:#888;font-size:12px}
+.lb-me{background:#e6f7f7;border-radius:8px}
+.medal{font-size:16px;text-align:center}
+.lb-btn{width:100%;background:#02989E;color:#fff;border:none;border-radius:10px;padding:12px;font-size:15px;font-family:'Sarabun',sans-serif;font-weight:600;cursor:pointer;margin-bottom:0.5rem}
+.retry-btn{width:100%;background:#f0f0f0;color:#333;border:none;border-radius:10px;padding:11px;font-size:14px;font-family:'Sarabun',sans-serif;cursor:pointer}
+.loading{text-align:center;color:#888;font-size:13px;padding:1rem}
 </style>
 </head>
 <body>
-<div id="app">
-  <div id="main"></div>
-</div>
+<div id="app"><div id="main"></div></div>
 <footer>
   <img src="https://raw.githubusercontent.com/panuphongpotae/boost-tutor-assets/main/logo%20boost%20tutor-01.png" alt="Boost Tutor" style="width:320px;height:auto">
 </footer>
 <script>
-const DEG=Math.PI/180;
+const API='https://script.google.com/macros/s/AKfycbwVu8pwfl4c7bei1Wk5QxdZnSn_w48a3jd4b6D9l-Ncnw012MVFE6Ub3tnReNrc02_riQ/exec';
+const MEDALS=['🥇','🥈','🥉'];
+
+// ---- Fraction renderers ----
 function fracHTML(neg,num,den){
   const sign=neg?'<span style="font-size:17px;margin-right:1px">−</span>':'';
   if(!den)return sign+'<span>'+num+'</span>';
   return`<span class="neg-frac">${sign}<span class="frac"><span class="num">${num}</span><span class="den">${den}</span></span></span>`;
 }
+function angFrac(neg,num,den){
+  // for angle display: larger font, pi symbol
+  const sign=neg?'−':'';
+  if(!den)return sign+num;
+  return`${sign}<span class="ang-frac"><span class="num">${num}</span><span class="den">${den}</span></span>`;
+}
+
 const LABELS={
   '0':{neg:false,num:'0',den:null},
-  '1/2':{neg:false,num:'1',den:'2'},
-  '√2/2':{neg:false,num:'√2',den:'2'},
-  '√3/2':{neg:false,num:'√3',den:'2'},
   '1':{neg:false,num:'1',den:null},
-  '√3':{neg:false,num:'√3',den:null},
-  '2':{neg:false,num:'2',den:null},
-  '√3/3':{neg:false,num:'√3',den:'3'},
-  '2√3/3':{neg:false,num:'2√3',den:'3'},
-  '2√2/3':{neg:false,num:'2√2',den:'3'},
-  '-1/2':{neg:true,num:'1',den:'2'},
-  '-√2/2':{neg:true,num:'√2',den:'2'},
-  '-√3/2':{neg:true,num:'√3',den:'2'},
   '-1':{neg:true,num:'1',den:null},
+  '1/2':{neg:false,num:'1',den:'2'},
+  '-1/2':{neg:true,num:'1',den:'2'},
+  '√2/2':{neg:false,num:'√2',den:'2'},
+  '-√2/2':{neg:true,num:'√2',den:'2'},
+  '√3/2':{neg:false,num:'√3',den:'2'},
+  '-√3/2':{neg:true,num:'√3',den:'2'},
+  '√2':{neg:false,num:'√2',den:null},
+  '-√2':{neg:true,num:'√2',den:null},
+  '√3':{neg:false,num:'√3',den:null},
   '-√3':{neg:true,num:'√3',den:null},
+  '1/√3':{neg:false,num:'1',den:'√3'},
+  '-1/√3':{neg:true,num:'1',den:'√3'},
+  '2':{neg:false,num:'2',den:null},
   '-2':{neg:true,num:'2',den:null},
-  '-√3/3':{neg:true,num:'√3',den:'3'},
-  '-2√3/3':{neg:true,num:'2√3',den:'3'},
-  '-2√2/3':{neg:true,num:'2√2',den:'3'},
 };
 function renderLabel(k){
-  if(!LABELS[k])return k;
+  if(!LABELS[k])return'<span>'+k+'</span>';
   const{neg,num,den}=LABELS[k];
   return fracHTML(neg,num,den);
 }
-function r(x){
-  if(Math.abs(x)<1e-9)return'0';
-  if(!isFinite(x))return'ไม่นิยาม';
-  const pairs=[
-    [0.5,'1/2'],[Math.sqrt(2)/2,'√2/2'],[Math.sqrt(3)/2,'√3/2'],
-    [1,'1'],[Math.sqrt(3),'√3'],[2,'2'],[1/Math.sqrt(3),'√3/3'],
-    [2/Math.sqrt(3),'2√3/3'],[2*Math.sqrt(2)/3,'2√2/3'],
-    [-0.5,'-1/2'],[-Math.sqrt(2)/2,'-√2/2'],[-Math.sqrt(3)/2,'-√3/2'],
-    [-1,'-1'],[-Math.sqrt(3),'-√3'],[-2,'-2'],[-1/Math.sqrt(3),'-√3/3'],
-    [-2/Math.sqrt(3),'-2√3/3'],[-2*Math.sqrt(2)/3,'-2√2/3']
-  ];
-  for(const[v,l]of pairs)if(Math.abs(x-v)<0.0001)return l;
-  return x.toFixed(3);
+
+// ---- Angle display as vertical fraction ----
+const RAD_DISPLAY={
+  'π/6':{neg:false,num:'π',den:'6'},
+  'π/4':{neg:false,num:'π',den:'4'},
+  'π/3':{neg:false,num:'π',den:'3'},
+  'π/2':{neg:false,num:'π',den:'2'},
+  '2π/3':{neg:false,num:'2π',den:'3'},
+  '3π/4':{neg:false,num:'3π',den:'4'},
+  '5π/6':{neg:false,num:'5π',den:'6'},
+  'π':{neg:false,num:'π',den:null},
+  '7π/6':{neg:false,num:'7π',den:'6'},
+  '5π/4':{neg:false,num:'5π',den:'4'},
+  '4π/3':{neg:false,num:'4π',den:'3'},
+  '3π/2':{neg:false,num:'3π',den:'2'},
+  '5π/3':{neg:false,num:'5π',den:'3'},
+  '7π/4':{neg:false,num:'7π',den:'4'},
+  '11π/6':{neg:false,num:'11π',den:'6'},
+  '2π':{neg:false,num:'2π',den:null},
+  '-π/6':{neg:true,num:'π',den:'6'},
+  '-π/4':{neg:true,num:'π',den:'4'},
+  '-π/3':{neg:true,num:'π',den:'3'},
+  '-π/2':{neg:true,num:'π',den:'2'},
+  '-2π/3':{neg:true,num:'2π',den:'3'},
+  '-3π/4':{neg:true,num:'3π',den:'4'},
+  '-5π/6':{neg:true,num:'5π',den:'6'},
+  '-π':{neg:true,num:'π',den:null},
+  '-7π/6':{neg:true,num:'7π',den:'6'},
+  '-5π/4':{neg:true,num:'5π',den:'4'},
+  '-4π/3':{neg:true,num:'4π',den:'3'},
+  '-3π/2':{neg:true,num:'3π',den:'2'},
+  '-5π/3':{neg:true,num:'5π',den:'3'},
+  '-7π/4':{neg:true,num:'7π',den:'4'},
+  '-11π/6':{neg:true,num:'11π',den:'6'},
+  '-2π':{neg:true,num:'2π',den:null},
+};
+function renderAngle(d){
+  if(RAD_DISPLAY[d]){
+    const{neg,num,den}=RAD_DISPLAY[d];
+    return angFrac(neg,num,den);
+  }
+  return d; // degree: "30°" etc
 }
-const ANGLES=[0,30,45,60,90,120,150,180,210,225,240,270,300,315,330,360,-30,-45,-60,-90,-120,-150,-180,-210,-225,-240,-270,-300,-315,-330,-360];
+
+// ---- Math ----
+const DEG=Math.PI/180;
+const DEG_ANGLES=[0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360,-30,-45,-60,-90,-120,-135,-150,-180,-210,-225,-240,-270,-300,-315,-330,-360];
+const RAD_ANGLES=[
+  {d:'π/6',deg:30},{d:'π/4',deg:45},{d:'π/3',deg:60},{d:'π/2',deg:90},
+  {d:'2π/3',deg:120},{d:'3π/4',deg:135},{d:'5π/6',deg:150},{d:'π',deg:180},
+  {d:'7π/6',deg:210},{d:'5π/4',deg:225},{d:'4π/3',deg:240},{d:'3π/2',deg:270},
+  {d:'5π/3',deg:300},{d:'7π/4',deg:315},{d:'11π/6',deg:330},{d:'2π',deg:360},
+  {d:'-π/6',deg:-30},{d:'-π/4',deg:-45},{d:'-π/3',deg:-60},{d:'-π/2',deg:-90},
+  {d:'-2π/3',deg:-120},{d:'-3π/4',deg:-135},{d:'-5π/6',deg:-150},{d:'-π',deg:-180},
+  {d:'-7π/6',deg:-210},{d:'-5π/4',deg:-225},{d:'-4π/3',deg:-240},{d:'-3π/2',deg:-270},
+  {d:'-5π/3',deg:-300},{d:'-7π/4',deg:-315},{d:'-11π/6',deg:-330},{d:'-2π',deg:-360},
+];
 const FUNCS=['sin','cos','tan','cosec','sec','cot'];
 function val(fn,deg){
   const rad=deg*DEG,s=Math.sin(rad),c=Math.cos(rad);
@@ -108,35 +176,67 @@ function val(fn,deg){
   if(fn==='sec')return Math.abs(c)<1e-9?Infinity:1/c;
   if(fn==='cot')return Math.abs(s)<1e-9?Infinity:c/s;
 }
+function r(x){
+  if(Math.abs(x)<1e-9)return'0';
+  if(!isFinite(x))return null;
+  const pairs=[
+    [1,'1'],[-1,'-1'],[0.5,'1/2'],[-0.5,'-1/2'],
+    [Math.sqrt(2)/2,'√2/2'],[-Math.sqrt(2)/2,'-√2/2'],
+    [Math.sqrt(3)/2,'√3/2'],[-Math.sqrt(3)/2,'-√3/2'],
+    [Math.sqrt(2),'√2'],[-Math.sqrt(2),'-√2'],
+    [Math.sqrt(3),'√3'],[-Math.sqrt(3),'-√3'],
+    [1/Math.sqrt(3),'1/√3'],[-1/Math.sqrt(3),'-1/√3'],
+    [2,'2'],[-2,'-2'],
+  ];
+  for(const[v,l]of pairs)if(Math.abs(x-v)<0.0001)return l;
+  return null;
+}
 const POOL=Object.keys(LABELS);
+function shuffle(a){return a.slice().sort(()=>Math.random()-.5);}
 function genQ(){
-  let fn,deg,ans,tries=0;
-  do{fn=FUNCS[Math.floor(Math.random()*6)];deg=ANGLES[Math.floor(Math.random()*ANGLES.length)];ans=val(fn,deg);tries++;}
-  while(!isFinite(ans)&&tries<30);
-  if(!isFinite(ans)){fn='sin';deg=30;ans=0.5;}
-  const correct=r(ans);
+  let fn,display,deg,ans,label,tries=0;
+  do{
+    fn=FUNCS[Math.floor(Math.random()*6)];
+    if(Math.random()<0.5){
+      deg=DEG_ANGLES[Math.floor(Math.random()*DEG_ANGLES.length)];
+      display=deg+'°';
+    }else{
+      const ra=RAD_ANGLES[Math.floor(Math.random()*RAD_ANGLES.length)];
+      deg=ra.deg; display=ra.d;
+    }
+    ans=val(fn,deg);
+    label=isFinite(ans)?r(ans):null;
+    tries++;
+  }while(label===null&&tries<60);
+  if(label===null){fn='sin';deg=30;display='30°';label='1/2';}
+  const correct=label;
   const set=new Set([correct]);
   let t=0;
   while(set.size<4&&t++<80)set.add(POOL[Math.floor(Math.random()*POOL.length)]);
-  const arr=[...set].sort(()=>Math.random()-.5);
-  return{fn,deg,correct,choices:arr.slice(0,4)};
+  const arr=shuffle([...set]).slice(0,4);
+  return{fn,display,choices:arr,correctIdx:arr.indexOf(correct)};
 }
-const TOTAL=12;
-const OK=['เยี่ยมมาก! ','ถูกต้อง! ','เก่งมาก! ','Perfect! ','โอเค! '];
+
+// ---- Quiz state ----
+const TOTAL=10;
+const OK=['เยี่ยมมาก! ','ถูกต้อง! ','เก่งมาก! ','Perfect! '];
 const NO=['โอ๊ะ! ไม่เป็นไร ','เกือบแล้ว! ','อย่าท้อนะ! ','ฝึกอีกนิด! '];
-const BUBBLES=['สวัสดี! พี่เต้มาทดสอบกันเลย! 🎯','ไหวมั้ย? มาลุยกัน! 💪','พี่เต้เชื่อในตัวเธอ! 🔥','โฟกัสนะ สู้ๆ! ⚡'];
+const BUBBLES=['สวัสดี! พี่เต้มาทดสอบกันเลย! 🎯','ไหวมั้ย? มาลุยกัน! 💪','โฟกัสนะ สู้ๆ! ⚡'];
 const PERSONAS=[
-  {min:11,name:'Trigo Legend',emoji:'🏆',desc:'พี่เต้กราบเลย! แม่นยำสุดๆ ฝีมือระดับตำนาน!'},
-  {min:9,name:'The Unit Circle Hero',emoji:'⭐',desc:'พี่เต้ประทับใจมาก! ท่อง unit circle ได้ในหัวเลย!'},
-  {min:7,name:'The Rising Mathematician',emoji:'📐',desc:'กำลังมาแรง! พี่เต้เห็นแวว ฝึกอีกนิดก็ Legend!'},
-  {min:5,name:'The Brave Beginner',emoji:'💪',desc:'กล้าลองแล้ว! พี่เต้เชื่อว่าฝึกอีกจะเป็น Trigo Legend ได้แน่!'},
-  {min:0,name:'Keep Going!',emoji:'💀',desc:'โอ๊ะ! พี่เต้ไม่ทิ้งกัน ลองใหม่แล้วจะเก่งขึ้นแน่นอน!'},
+  {min:9,name:'Trigo Legend',emoji:'🏆',desc:'พี่เต้กราบเลย! แม่นยำสุดๆ ระดับตำนาน!'},
+  {min:7,name:'The Unit Circle Hero',emoji:'⭐',desc:'พี่เต้ประทับใจมาก! ท่อง unit circle ได้ในหัวเลย!'},
+  {min:5,name:'The Rising Mathematician',emoji:'📐',desc:'กำลังมาแรง! ฝึกอีกนิดก็ Legend!'},
+  {min:3,name:'The Brave Beginner',emoji:'💪',desc:'กล้าลองแล้ว! ฝึกอีกจะเป็น Trigo Legend ได้แน่!'},
+  {min:0,name:'Keep Going!',emoji:'💀',desc:'พี่เต้ไม่ทิ้งกัน ลองใหม่แล้วจะเก่งขึ้นแน่นอน!'},
 ];
-let questions=[],current=0,score=0,answered=false;
-function buildQuiz(){questions=Array.from({length:TOTAL},()=>genQ());current=0;score=0;}
+function fmtTime(ms){const s=Math.floor(ms/1000),m=Math.floor(s/60);return m>0?`${m}:${String(s%60).padStart(2,'0')}`:`${s}s`;}
+
+let questions=[],current=0,score=0,answered=false,startTime=0,quizMs=0,myName='',myScore=0,myMs=0;
+function buildQuiz(){questions=Array.from({length:TOTAL},()=>genQ());current=0;score=0;startTime=Date.now();}
+
 function render(){
   const app=document.getElementById('main');
-  if(current>=TOTAL){renderResult(app);return;}
+  if(current>=TOTAL){quizMs=Date.now()-startTime;renderResult(app);return;}
   const q=questions[current];
   answered=false;
   const bubble=BUBBLES[Math.floor(Math.random()*BUBBLES.length)];
@@ -147,48 +247,108 @@ function render(){
     <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${Math.round(current/TOTAL*100)}%"></div></div>
     <div class="q-label">ข้อ ${current+1} / ${TOTAL}</div>
   </div>
-  <div class="question-box">${q.fn}(${q.deg}°) = ?</div>
-  <div class="choices" id="choices">
-    ${q.choices.map(c=>`<button class="choice-btn" data-val="${c}" onclick="choose(this,'${c}')">${renderLabel(c)}</button>`).join('')}
+  <div class="question-box">${q.fn}(${renderAngle(q.display)}) = ?</div>
+  <div class="choices">
+    ${q.choices.map((c,i)=>`<button class="choice-btn" id="cb${i}" onclick="choose(${i})">${renderLabel(c)}</button>`).join('')}
   </div>
   <div class="feedback-box" id="fb" style="display:none"></div>
   <button class="next-btn" id="nxt" style="display:none" onclick="nextQ()">ต่อไป →</button>`;
 }
-function choose(btn,v){
+
+function choose(idx){
   if(answered)return;
   answered=true;
   const q=questions[current];
-  const ok=v===q.correct;
+  const ok=idx===q.correctIdx;
   if(ok)score++;
-  document.querySelectorAll('.choice-btn').forEach(b=>{
+  for(let i=0;i<q.choices.length;i++){
+    const b=document.getElementById('cb'+i);
     b.disabled=true;
-    if(b.dataset.val===q.correct)b.classList.add('correct');
-    else if(b===btn&&!ok)b.classList.add('wrong');
-  });
+    if(i===q.correctIdx)b.classList.add('correct');
+    else if(i===idx&&!ok)b.classList.add('wrong');
+  }
   const fb=document.getElementById('fb');
   fb.style.display='flex';
-  const ans=renderLabel(q.correct);
-  if(ok){fb.className='feedback-box feedback-correct';fb.innerHTML=OK[Math.floor(Math.random()*OK.length)]+`${q.fn}(${q.deg}°) = `+ans+' ✓';}
-  else{fb.className='feedback-box feedback-wrong';fb.innerHTML=NO[Math.floor(Math.random()*NO.length)]+'คำตอบที่ถูกคือ '+ans;}
+  if(ok){fb.className='feedback-box feedback-correct';fb.innerHTML=OK[Math.floor(Math.random()*OK.length)]+'✓';}
+  else{fb.className='feedback-box feedback-wrong';fb.innerHTML=NO[Math.floor(Math.random()*NO.length)]+'คำตอบที่ถูกคือ '+renderLabel(q.choices[q.correctIdx]);}
   document.getElementById('nxt').style.display='block';
 }
+
 function nextQ(){current++;render();}
+
 function renderResult(app){
   const p=PERSONAS.find(x=>score>=x.min);
+  myScore=score; myMs=quizMs;
   app.innerHTML=`
   <div class="mascot">${p.emoji}</div>
-  <div style="text-align:center;margin-bottom:1rem"><div class="boost-bubble" style="display:inline-block">พี่เต้: ${score>=9?'ภูมิใจในตัวเธอมาก! 🎉':'เชียร์อยู่เสมอนะ! 💙'}</div></div>
+  <div class="bubble-wrap"><div class="boost-bubble">พี่เต้: ${score>=7?'ภูมิใจในตัวเธอมาก! 🎉':'เชียร์อยู่เสมอนะ! 💙'}</div></div>
   <div class="result-card">
     <div style="font-size:12px;color:#888">เธอคือ...</div>
     <div class="result-title">${p.name}</div>
     <div class="stat-row">
       <div class="stat-item"><div class="stat-num">${score}/${TOTAL}</div><div class="stat-lbl">คะแนน</div></div>
       <div class="stat-item"><div class="stat-num">${Math.round(score/TOTAL*100)}%</div><div class="stat-lbl">ความแม่นยำ</div></div>
+      <div class="stat-item"><div class="stat-num">${fmtTime(quizMs)}</div><div class="stat-lbl">เวลา</div></div>
     </div>
     <div class="result-desc">${p.desc}</div>
-    <button class="retry-btn" onclick="startOver()">เล่นอีกครั้ง</button>
-  </div>`;
+  </div>
+  <div class="name-card">
+    <p>ใส่ชื่อเพื่อบันทึกลง Ranking 🏆</p>
+    <input class="name-input" id="nameInput" type="text" maxlength="20" placeholder="ชื่อของคุณ...">
+    <button class="submit-btn" onclick="submitScore()">บันทึกคะแนน</button>
+  </div>
+  <button class="retry-btn" onclick="startOver()">เล่นอีกครั้ง (ไม่บันทึก)</button>`;
+  document.getElementById('nameInput').focus();
 }
+
+async function submitScore(){
+  const nameEl=document.getElementById('nameInput');
+  const name=nameEl.value.trim();
+  if(!name){nameEl.style.borderColor='#e24b4a';return;}
+  myName=name;
+  nameEl.disabled=true;
+  document.querySelector('.submit-btn').disabled=true;
+  document.querySelector('.submit-btn').textContent='กำลังบันทึก...';
+  try{
+    await fetch(API,{method:'POST',body:JSON.stringify({name,score:myScore,time:myMs}),headers:{'Content-Type':'text/plain'}});
+  }catch(e){}
+  renderLeaderboard();
+}
+
+async function renderLeaderboard(){
+  const app=document.getElementById('main');
+  app.innerHTML=`<div class="mascot">🏆</div><div class="loading">กำลังโหลด Ranking...</div>`;
+  let lb=[];
+  try{
+    const res=await fetch(API+'?t='+Date.now());
+    lb=await res.json();
+  }catch(e){lb=[];}
+
+  // find my rank
+  let myRank=-1;
+  for(let i=0;i<lb.length;i++){
+    if(lb[i].name===myName&&lb[i].score==myScore&&lb[i].time==myMs){myRank=i+1;break;}
+  }
+  if(myRank<0)myRank=lb.length;
+
+  const rows=lb.map((e,i)=>{
+    const isMe=e.name===myName&&e.score==myScore&&e.time==myMs&&i===myRank-1;
+    const rank=i<3?`<span class="medal">${MEDALS[i]}</span>`:`<span class="lb-rank">${i+1}</span>`;
+    return`<div class="lb-row${isMe?' lb-me':''}">${rank}<span class="lb-name">${e.name}</span><span class="lb-score">${e.score}/${TOTAL}</span><span class="lb-time">${fmtTime(Number(e.time))}</span></div>`;
+  }).join('')||'<div style="text-align:center;color:#888;font-size:13px;padding:1rem">ยังไม่มีข้อมูล</div>';
+
+  app.innerHTML=`
+  <div class="mascot">🏆</div>
+  <div class="bubble-wrap"><div class="boost-bubble">พี่เต้: ${myRank===1?'แชมป์เลย! 👑':`คุณอยู่อันดับที่ ${myRank}! สู้ต่อไปนะ! 💪`}</div></div>
+  <div class="lb-card">
+    <div class="lb-title">🏆 Ranking Board</div>
+    <div class="lb-row lb-header"><span></span><span>ชื่อ</span><span style="text-align:center">คะแนน</span><span style="text-align:right">เวลา</span></div>
+    ${rows}
+  </div>
+  <button class="lb-btn" onclick="startOver()">เล่นอีกครั้ง</button>
+  <button class="retry-btn" onclick="renderLeaderboard()">🔄 รีเฟรช Ranking</button>`;
+}
+
 function startOver(){buildQuiz();render();}
 buildQuiz();render();
 </script>
