@@ -307,25 +307,34 @@ async function submitScore(){
   if(!name){nameEl.style.borderColor='#e24b4a';return;}
   myName=name;
   nameEl.disabled=true;
-  document.querySelector('.submit-btn').disabled=true;
-  document.querySelector('.submit-btn').textContent='กำลังบันทึก...';
+  const btn=document.querySelector('.submit-btn');
+  btn.disabled=true;
+  btn.textContent='กำลังบันทึก...';
   try{
     const url=`${API}?action=save&name=${encodeURIComponent(name)}&score=${myScore}&time=${myMs}`;
     await fetch(url,{mode:'no-cors'});
   }catch(e){}
-  // รอ 1 วิ ให้ Sheet อัพเดทก่อน
-  await new Promise(res=>setTimeout(res,1000));
+  // รอ 3 วิ ให้ Sheet อัพเดทก่อน
+  await new Promise(res=>setTimeout(res,3000));
   renderLeaderboard();
+}
+
+async function fetchLB(){
+  for(let i=0;i<3;i++){
+    try{
+      const res=await fetch(API+'?t='+Date.now());
+      const data=await res.json();
+      if(Array.isArray(data)&&data.length>0)return data;
+    }catch(e){}
+    await new Promise(res=>setTimeout(res,1500));
+  }
+  return[];
 }
 
 async function renderLeaderboard(){
   const app=document.getElementById('main');
   app.innerHTML=`<div class="mascot">🏆</div><div class="loading">กำลังโหลด Ranking...</div>`;
-  let lb=[];
-  try{
-    const res=await fetch(API+'?t='+Date.now());
-    lb=await res.json();
-  }catch(e){lb=[];}
+  let lb=await fetchLB();
 
   // find my rank
   let myRank=-1;
